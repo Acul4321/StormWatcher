@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://gutx1def5crt"]
+
+[ext_resource type="Script" path="res://script/windSpeedControl.gd" id="2_x6go8"]
+[ext_resource type="FontFile" uid="uid://d2iupbhfs3b77" path="res://asset/font/CursedTimerUlil-Aznm.ttf" id="2_xfot6"]
+
+[sub_resource type="Theme" id="Theme_4va33"]
+default_font = ExtResource("2_xfot6")
+default_font_size = 40
+
+[node name="WindSpeed" type="Node2D"]
+script = ExtResource("2_x6go8")
+
+[node name="speedText" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+offset_left = 20.0
+offset_right = 20.0
+offset_bottom = 40.0
+theme = SubResource("Theme_4va33")
+fit_content = true
+autowrap_mode = 0
