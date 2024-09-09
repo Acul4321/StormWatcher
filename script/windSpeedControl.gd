@@ -5,12 +5,6 @@ var speedRange = [0,0]
 var targetSpeed : float
 var curSpeed : float
 
-enum CHANGE {STILL,SLOW,MODERATE,FAST,STORM}
-var change:CHANGE = CHANGE.MODERATE
-
-enum SPEED {CALM,BREEZE,STRONGBREEZE,GALE,STRONGGALE,STORM}
-var speed:SPEED = SPEED.STORM
-
 func _ready():
 	curSpeed = 0
 	stateLogic()
@@ -31,32 +25,32 @@ func _process(delta: float) -> void:
 	%speedText.text = newText + "KM/H"
 
 func stateLogic():
-	match change: # state managment
-		CHANGE.STILL:
+	match Gameplay.windSpeedChange: # state managment
+		Gameplay.WINDSPEEDCHANGE.STILL:
 			changeSpeed = 1
-		CHANGE.SLOW:
+		Gameplay.WINDSPEEDCHANGE.SLOW:
 			changeSpeed = 5
-		CHANGE.MODERATE:
+		Gameplay.WINDSPEEDCHANGE.MODERATE:
 			changeSpeed = 20
-		CHANGE.FAST:
+		Gameplay.WINDSPEEDCHANGE.FAST:
 			changeSpeed = 100
-		CHANGE.STORM:
+		Gameplay.WINDSPEEDCHANGE.STORM:
 			changeSpeed = 500
 		_:
 			print("Invalid")
 
-	match speed: # pressure managment
-		SPEED.CALM:
+	match Gameplay.windSpeedState: # pressure managment
+		Gameplay.WINDSPEEDSTATE.CALM:
 			speedRange = [.1,2]
-		SPEED.BREEZE:
+		Gameplay.WINDSPEEDSTATE.BREEZE:
 			speedRange = [4,20]
-		SPEED.STRONGBREEZE:
+		Gameplay.WINDSPEEDSTATE.STRONGBREEZE:
 			speedRange = [20,39]
-		SPEED.GALE:
+		Gameplay.WINDSPEEDSTATE.GALE:
 			speedRange = [40,60]
-		SPEED.STRONGGALE:
+		Gameplay.WINDSPEEDSTATE.STRONGGALE:
 			speedRange = [61,99]
-		SPEED.STORM:
+		Gameplay.WINDSPEEDSTATE.STORM:
 			speedRange = [100,120]
 		_:
 			print("Invalid")

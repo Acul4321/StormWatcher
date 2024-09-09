@@ -5,12 +5,6 @@ var rainRange = [0,0]
 var targetRain : float
 var curRain : float
 
-enum CHANGE {STILL,SLOW,MODERATE,FAST,STORM}
-var change:CHANGE = CHANGE.STORM
-
-enum RAIN {DRY,DRIZZLE,RAIN,HEAVY,STORM}
-var rain:RAIN = RAIN.STORM
-
 func _ready():
 	curRain = 0
 	stateLogic()
@@ -26,30 +20,30 @@ func _process(delta: float) -> void:
 	%rainBar.value = curRain
 
 func stateLogic():
-	match change: # state managment
-		CHANGE.STILL:
+	match Gameplay.rainChange: # state managment
+		Gameplay.RAINCHANGE.STILL:
 			changeSpeed = 1
-		CHANGE.SLOW:
+		Gameplay.RAINCHANGE.SLOW:
 			changeSpeed = 5
-		CHANGE.MODERATE:
+		Gameplay.RAINCHANGE.MODERATE:
 			changeSpeed = 20
-		CHANGE.FAST:
+		Gameplay.RAINCHANGE.FAST:
 			changeSpeed = 100
-		CHANGE.STORM:
+		Gameplay.RAINCHANGE.STORM:
 			changeSpeed = 500
 		_:
 			print("Invalid")
 
-	match rain: # pressure managment
-		RAIN.DRY:
+	match Gameplay.rain: # pressure managment
+		Gameplay.RAIN.DRY:
 			rainRange = [0,0]
-		RAIN.DRIZZLE:
+		Gameplay.RAIN.DRIZZLE:
 			rainRange = [10,20]
-		RAIN.RAIN:
+		Gameplay.RAIN.RAIN:
 			rainRange = [30,50]
-		RAIN.HEAVY:
+		Gameplay.RAIN.HEAVY:
 			rainRange = [60,80]
-		RAIN.STORM:
+		Gameplay.RAIN.STORM:
 			rainRange = [95,100]
 		_:
 			print("Invalid")

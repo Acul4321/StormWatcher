@@ -9,12 +9,6 @@ var pressureRange = [0,0]
 var targetY : float
 var curY : float
 
-enum CHANGE {STILL,SLOW,MODERATE,FAST,STORM}
-var change:CHANGE = CHANGE.STILL
-
-enum PRESSURE {LOW,LOWMED,MEDIUM,MEDHIGH,HIGH,STORM}
-var pressure:PRESSURE = PRESSURE.LOW
-
 func _ready():
 	curY = 100
 	stateLogic()
@@ -41,32 +35,32 @@ func _draw() -> void:
 		draw_line(start, end, Color.GREEN, 3.0)
 
 func stateLogic():
-	match change: # state managment
-		CHANGE.STILL:
+	match Gameplay.atmosphericChange: # state managment
+		Gameplay.ATMOSPHERICCHANGE.STILL:
 			changeSpeed = 5
-		CHANGE.SLOW:
+		Gameplay.ATMOSPHERICCHANGE.SLOW:
 			changeSpeed = 20
-		CHANGE.MODERATE:
+		Gameplay.ATMOSPHERICCHANGE.MODERATE:
 			changeSpeed = 50
-		CHANGE.FAST:
+		Gameplay.ATMOSPHERICCHANGE.FAST:
 			changeSpeed = 100
-		CHANGE.STORM:
+		Gameplay.ATMOSPHERICCHANGE.STORM:
 			changeSpeed = 500
 		_:
 			print("Invalid")
 
-	match pressure: # pressure managment
-		PRESSURE.LOW:
+	match Gameplay.atmosphericPressure: # pressure managment
+		Gameplay.ATMOSPHERICPRESSURE.LOW:
 			pressureRange = [66,100]
-		PRESSURE.LOWMED:
+		Gameplay.ATMOSPHERICPRESSURE.LOWMED:
 			pressureRange = [33,100]
-		PRESSURE.MEDIUM:
+		Gameplay.ATMOSPHERICPRESSURE.MEDIUM:
 			pressureRange = [33,66]
-		PRESSURE.MEDHIGH:
+		Gameplay.ATMOSPHERICPRESSURE.MEDHIGH:
 			pressureRange = [0,66]
-		PRESSURE.HIGH:
+		Gameplay.ATMOSPHERICPRESSURE.HIGH:
 			pressureRange = [0,33]
-		PRESSURE.STORM:
+		Gameplay.ATMOSPHERICPRESSURE.STORM:
 			pressureRange = [0,100]
 		_:
 			print("Invalid")

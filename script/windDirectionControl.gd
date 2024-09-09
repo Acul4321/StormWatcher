@@ -5,11 +5,6 @@ var turnSpeed: float
 
 var clockwise: bool
 var tolerance:float
-enum DIRECTION {NORTH,EAST,SOUTH,WEST,CURRENT}
-var direction:DIRECTION = DIRECTION.CURRENT
-
-enum STATE {STILL,CALM,MILD,HARD,INTENSE,STORM}
-var state:STATE = STATE.HARD
 
 func _physics_process(delta: float) -> void:
 	moveHand(delta)
@@ -29,38 +24,38 @@ func moveHand(delta):
 	%handPivot.rotation = deg_to_rad(curAngle)
 
 func stateLogic():
-	match state: # state managment
-		STATE.STILL:
+	match Gameplay.windDirectionState: # state managment
+		Gameplay.WINDDIRECTIONSTATE.STILL:
 			tolerance = 5
 			turnSpeed = randf_range(.5,1)
-		STATE.CALM:
+		Gameplay.WINDDIRECTIONSTATE.CALM:
 			tolerance = 20
 			turnSpeed = randf_range(2,7)
-		STATE.MILD:
+		Gameplay.WINDDIRECTIONSTATE.MILD:
 			tolerance = 45
 			turnSpeed = randf_range(8,12)
-		STATE.HARD:
+		Gameplay.WINDDIRECTIONSTATE.HARD:
 			tolerance = 60
 			turnSpeed = randf_range(30,60)
-		STATE.INTENSE:
+		Gameplay.WINDDIRECTIONSTATE.INTENSE:
 			tolerance = randf_range(60,180)
 			turnSpeed = randf_range(200,300)
-		STATE.STORM:
+		Gameplay.WINDDIRECTIONSTATE.STORM:
 			tolerance = randf_range(210,360)
 			turnSpeed = randf_range(500,600)
 		_:
 			print("Invalid")
 	var facing:float
-	match direction: # direction managment
-		DIRECTION.NORTH:
+	match Gameplay.windDirectionBias: # direction managment
+		Gameplay.WINDDIRECTIONBIAS.NORTH:
 			facing = 0
-		DIRECTION.EAST:
+		Gameplay.WINDDIRECTIONBIAS.EAST:
 			facing = 90
-		DIRECTION.SOUTH:
+		Gameplay.WINDDIRECTIONBIAS.SOUTH:
 			facing = 180
-		DIRECTION.WEST:
+		Gameplay.WINDDIRECTIONBIAS.WEST:
 			facing = 270
-		DIRECTION.CURRENT:
+		Gameplay.WINDDIRECTIONBIAS.CURRENT:
 			facing = curAngle
 		_:
 			print("Invalid")
