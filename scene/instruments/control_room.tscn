@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://c5j6lg6fus88j"]
+
+[ext_resource type="PackedScene" uid="uid://ogcn2fi0w2dw" path="res://scene/instruments/windDirectionInst.tscn" id="1_n7825"]
+[ext_resource type="PackedScene" uid="uid://c2uyqqwe5yjnu" path="res://scene/instruments/atmosphericPressureInst.tscn" id="2_k0ppu"]
+[ext_resource type="PackedScene" uid="uid://gutx1def5crt" path="res://scene/instruments/windSpeedInst.tscn" id="3_jaixs"]
+[ext_resource type="PackedScene" uid="uid://bf24fpcd1jwrw" path="res://scene/instruments/thermometerInst.tscn" id="4_kx83n"]
+[ext_resource type="PackedScene" uid="uid://1tlnlkq1cedt" path="res://scene/instruments/rainfallInst.tscn" id="5_d1q2e"]
+[ext_resource type="PackedScene" uid="uid://bjyw8pttpjxos" path="res://scene/instruments/cloudRadar.tscn" id="6_0jlo7"]
+
+[node name="controlRoom" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="WindDirectionInst" parent="." instance=ExtResource("1_n7825")]
+position = Vector2(57, 45)
+
+[node name="AtmosphericPressure" parent="." instance=ExtResource("2_k0ppu")]
+position = Vector2(404, 203)
+
+[node name="WindSpeed" parent="." instance=ExtResource("3_jaixs")]
+position = Vector2(112, 26)
+
+[node name="thermometer" parent="." instance=ExtResource("4_kx83n")]
+position = Vector2(61, 143)
+
+[node name="rainfall" parent="." instance=ExtResource("5_d1q2e")]
+position = Vector2(242, 95)
+
+[node name="cloudRadar" parent="." instance=ExtResource("6_0jlo7")]
+position = Vector2(810, 306)

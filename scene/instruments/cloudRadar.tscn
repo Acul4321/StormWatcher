@@ -1,0 +1,33 @@
+[gd_scene load_steps=8 format=3 uid="uid://bjyw8pttpjxos"]
+
+[ext_resource type="Script" path="res://script/cloudRadarControl.gd" id="1_gwoi4"]
+[ext_resource type="Texture2D" uid="uid://cmu5icd8rfsb8" path="res://asset/texture/land.png" id="1_red6k"]
+[ext_resource type="Texture2D" uid="uid://8g2eef7ddwv2" path="res://asset/texture/cloud.png" id="2_v1dir"]
+[ext_resource type="Texture2D" uid="uid://cbklme1qx70bj" path="res://asset/texture/cloud (1).png" id="3_lv3q0"]
+[ext_resource type="Texture2D" uid="uid://cr8gyxras8wp5" path="res://asset/texture/cloud (2).png" id="4_63a54"]
+[ext_resource type="Texture2D" uid="uid://br686gqxfqqsv" path="res://asset/texture/stormCloud.png" id="5_5ehtw"]
+
+[sub_resource type="Curve2D" id="Curve2D_34spr"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -300, -300, 0, 0, 0, 0, 300, -300, 0, 0, 0, 0, 300, 300, 0, 0, 0, 0, -300, 300, 0, 0, 0, 0, -300, -300)
+}
+point_count = 5
+
+[node name="cloudRadar" type="Node2D"]
+script = ExtResource("1_gwoi4")
+clouds = Array[CompressedTexture2D]([ExtResource("2_v1dir"), ExtResource("3_lv3q0"), ExtResource("4_63a54"), ExtResource("5_5ehtw")])
+
+[node name="Land" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, 1.915)
+texture = ExtResource("1_red6k")
+
+[node name="centre" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="spawnPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_34spr")
+
+[node name="spawnPoint" type="PathFollow2D" parent="spawnPath"]
+unique_name_in_owner = true
+position = Vector2(-300, -300)

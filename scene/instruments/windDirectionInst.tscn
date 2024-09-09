@@ -1,3 +1,20 @@
-[gd_scene format=3 uid="uid://ogcn2fi0w2dw"]
+[gd_scene load_steps=4 format=3 uid="uid://ogcn2fi0w2dw"]
+
+[ext_resource type="Script" path="res://script/windDirectionControl.gd" id="1_0ykd2"]
+[ext_resource type="Texture2D" uid="uid://bcqofedxlkwyg" path="res://asset/texture/compassBody.png" id="1_lmg6a"]
+[ext_resource type="Texture2D" uid="uid://canff8b105byf" path="res://asset/texture/compassArrow.png" id="2_8wjw0"]
 
 [node name="WindDirectionInst" type="Node2D"]
+script = ExtResource("1_0ykd2")
+
+[node name="compassBody" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_lmg6a")
+
+[node name="handPivot" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="compassHand" type="Sprite2D" parent="handPivot"]
+position = Vector2(0, -9.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_8wjw0")
